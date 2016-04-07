@@ -15,6 +15,8 @@
         "System.IO.FileSystem.Primitives": "4.0.0-*",
         "System.Runtime": "4.0.20-*",
         "System.Runtime.Extensions": "4.0.20-*",
+        "System.Runtime.Handles": "4.0.0-*",
+        "System.Runtime.Serialization.Primitives": "4.0.20-*",
         "System.IO": "4.0.0-*",
         "System.Runtime.InteropServices": "4.0.20-*",
       }

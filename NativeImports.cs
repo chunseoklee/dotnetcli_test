@@ -78,7 +78,7 @@ namespace Microsoft.Samples.Debugging.Native
     /// <summary>
     /// Thrown when failing to read memory from a target.
     /// </summary>
-    [Serializable()]
+    //[Serializable()]
     public class ReadMemoryFailureException : InvalidOperationException
     {
         /// <summary>
