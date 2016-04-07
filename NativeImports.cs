@@ -134,10 +134,10 @@ namespace Microsoft.Samples.Debugging.Native
         /// </summary>
         /// <param name="info">The SerializationInfo that holds the serialized object data about the exception being thrown.</param>
         /// <param name="context">The StreamingContext that contains contextual information about the source or destination.</param>
-        protected ReadMemoryFailureException(SerializationInfo info, StreamingContext context)
+        /*protected ReadMemoryFailureException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-        }
+        }*/
         #endregion
     }
 
@@ -1065,12 +1065,12 @@ namespace Microsoft.Samples.Debugging.Native
 
     // SafeHandle to call CloseHandle
     //[SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
-    public sealed class SafeWin32Handle : SafeHandleZeroOrMinusOneIsInvalid
+    public sealed class SafeWin32Handle : SafeHandle
     {
-        public SafeWin32Handle() : base(true) { }
+        //public SafeWin32Handle() : base(true) { }
 
         public SafeWin32Handle(IntPtr handle)
-            : base(true)
+            : base(handle, true)
         {
             SetHandle(handle);
         }
@@ -1080,6 +1080,12 @@ namespace Microsoft.Samples.Debugging.Native
         {
             return NativeMethods.CloseHandle(handle);
         }
+
+        public override bool IsInvalid {
+            [System.Security.SecurityCritical]
+            get { return handle == new IntPtr(-1); }
+        }
+
     }
 
     // These extend the Mdbg native definitions.
@@ -1154,14 +1160,26 @@ namespace Microsoft.Samples.Debugging.Native
 
         // SafeHandle to call UnmapViewOfFile
         //[SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
-        public sealed class SafeMapViewHandle : SafeHandleZeroOrMinusOneIsInvalid
+        public sealed class SafeMapViewHandle : SafeHandle
         {
-            private SafeMapViewHandle() : base(true) { }
+            //private SafeMapViewHandle() : base(true) { }
+            public SafeMapViewHandle(IntPtr handle)
+                : base(handle, true)
+            {
+                SetHandle(handle);
+            }
+
 
             protected override bool ReleaseHandle()
             {
                 return UnmapViewOfFile(handle);
             }
+
+            public override bool IsInvalid {
+                [System.Security.SecurityCritical]
+                get { return handle == new IntPtr(-1); }
+            }
+
 
             // This is technically equivalent to DangerousGetHandle, but it's safer for file
             // mappings. In file mappings, the "handle" is actually a base address that needs
@@ -1196,11 +1214,11 @@ namespace Microsoft.Samples.Debugging.Native
 
         // SafeHandle to call FreeLibrary
         //[SecurityPermission(SecurityAction.LinkDemand, UnmanagedCode = true)]
-        public sealed class SafeLoadLibraryHandle : SafeHandleZeroOrMinusOneIsInvalid
+        public sealed class SafeLoadLibraryHandle : SafeHandle
         {
-            private SafeLoadLibraryHandle() : base(true) { }
+            //private SafeLoadLibraryHandle() : base(true) { }
             public SafeLoadLibraryHandle(IntPtr handle)
-                : base(true)
+                : base(handle, true)
             {
                 SetHandle(handle);
             }
@@ -1209,6 +1227,12 @@ namespace Microsoft.Samples.Debugging.Native
             {
                 return FreeLibrary(handle);
             }
+
+            public override bool IsInvalid {
+                [System.Security.SecurityCritical]
+                get { return handle == new IntPtr(-1); }
+            }
+
 
             // This is technically equivalent to DangerousGetHandle, but it's safer for loaded
             // libraries where the HMODULE is also the base address the module is loaded at.
