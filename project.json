@@ -1,0 +1,23 @@
+{
+    "version": "1.0.0-*",
+    "compilationOptions": {
+        "emitEntryPoint": false
+    },
+
+    "dependencies": {
+    },
+
+  "frameworks": {
+    "dotnet55": {
+      "dependencies": {
+        "NETStandard.Library": "1.0.0-rc2-23811",
+        "System.IO.FileSystem": "4.0.0-*",
+        "System.IO.FileSystem.Primitives": "4.0.0-*",
+        "System.Runtime": "4.0.20-*",
+        "System.Runtime.Extensions": "4.0.20-*",
+        "System.IO": "4.0.0-*",
+        "System.Runtime.InteropServices": "4.0.20-*",
+      }
+    }
+  }
+}

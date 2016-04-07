@@ -1,0 +1,34 @@
+{
+    "version": "1.0.0-*",
+    "compilationOptions": {
+        "emitEntryPoint": false
+    },
+
+    "dependencies": {
+    },
+
+  "frameworks": {
+    "dnxcore50":{
+          "dependencies": {
+            "NETStandard.Library": "1.0.0-rc2-23811",
+            "System.Runtime": "4.0.0-*",
+            "System.Runtime.Serialization.Primitives": "4.1.0-rc2-*",
+            "System.Runtime.Handles":"4.0.1-rc2-*",
+            "System.IO.FileSystem": "4.0.1-*",
+            "System.IO.FileSystem.Primitives": "4.0.1-*",
+            "System.IO": "4.0.1-*",
+          },
+
+    },
+    "dotnet55": {
+      "dependencies": {
+        "System.IO.FileSystem": "4.0.0-*",
+        "System.IO.FileSystem.Primitives": "4.0.0-*",
+        "System.Runtime": "4.0.20-*",
+        "System.Runtime.Extensions": "4.0.20-*",
+        "System.IO": "4.0.0-*",
+        "System.Runtime.InteropServices": "4.0.20-*",
+      }
+    }
+  }
+}
