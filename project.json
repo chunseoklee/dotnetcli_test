@@ -1,7 +1,9 @@
 {
     "version": "1.0.0-*",
     "compilationOptions": {
-        "emitEntryPoint": false
+        "emitEntryPoint": false,
+        "allowUnsafe": true,
+
     },
 
     "dependencies": {
