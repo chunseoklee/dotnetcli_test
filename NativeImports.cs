@@ -1075,6 +1075,9 @@ namespace Microsoft.Samples.Debugging.Native
             SetHandle(handle);
         }
 
+        public void Close()
+        {
+        }
 
         protected override bool ReleaseHandle()
         {
@@ -1169,6 +1172,9 @@ namespace Microsoft.Samples.Debugging.Native
                 SetHandle(handle);
             }
 
+            public void Close()
+            {
+            }
 
             protected override bool ReleaseHandle()
             {
